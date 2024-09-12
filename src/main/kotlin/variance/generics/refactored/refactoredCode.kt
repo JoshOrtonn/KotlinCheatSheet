@@ -7,7 +7,7 @@ package variance.generics.refactored
 //}
 
 // Hence if we can constrain the upperbounds of the type param so that only Bev types
-// Can go inside it.
+// Can go inside it
 // Hence T can only ever be Beverage, or one of its subtypes.
 //If we don’t specify the upper bound, Kotlin will assume a default of Any?
 class Mug<T: Beverage>(val beverage: T){
