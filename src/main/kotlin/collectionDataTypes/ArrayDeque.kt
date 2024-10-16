@@ -18,14 +18,12 @@ class ArrayDeque {
         // Holds memory in a way that can more performantly
         // Add new indexes at first and last position.
         deque.addFirst(1)
+        deque.addLast(5)
 
         // Slower than above as have to copy everything
         // that previously existed, create new array
         // with new index and value, pasting previous values
         deque.add(0, 1)
-
-        deque.addLast(5)
-
     }
 
 }

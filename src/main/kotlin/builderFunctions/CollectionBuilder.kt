@@ -8,6 +8,7 @@ class CollectionBuilder {
             add(1)
             addAll(myFavouriteNumbers)
         }
+        //    [1, 42, 815, 7, 2016]
         return myList
     }
 

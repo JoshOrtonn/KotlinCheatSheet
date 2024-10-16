@@ -1,5 +1,7 @@
 package collectionDataTypes
 
+import java.util.*
+
 class ListConversions {
 
     fun initializingLists() {
@@ -98,6 +100,22 @@ class ListConversions {
 
         println(unique)
         println(uniqueCaseInsensitive)
+    }
+    fun sortingLists() {
+        val students = listOf<Pair<String, Int>>(Pair("Josh", 100), Pair("Lotts", 10), Pair("Susan", 50), Pair("Bob", 30), Pair("Uncle", 10))
+        // Sort students by grade descending, then by name ascending
+        val sortedStudentList = students.sortedWith(
+            compareByDescending<Pair<String, Int>> { it.second}
+                .thenBy { it.first }
+        )
+        //[(Josh, 100), (Susan, 50), (Bob, 30), (Lotts, 10), (Uncle, 10)]
+
+        // Or natual sort order
+        val list = listOf<Int>(123, 213,234, 231,12,15).sorted()
+        //[12, 15, 123, 213, 231, 234]
+
+        val sortedList = list.sortedDescending()
+        // [234, 231, 213, 123, 15, 12]
     }
 
 }
