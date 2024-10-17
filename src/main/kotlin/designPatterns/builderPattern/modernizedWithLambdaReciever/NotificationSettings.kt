@@ -64,7 +64,7 @@ fun createNotificationSettings(emailAddress: EmailAddress?, phoneNumber: PhoneNu
     // As it's reference.
     // We are calling notificationSettings function with lambda as argument with builder as reference (with(builder))
     // Applying the same things, and then building it.
-    val settings = notificationSettings {
+    return notificationSettings {
         enabled = true
         // Can even create a more expressive builder
         if (emailAddress != null) send(ANALYTICS to emailAddress, DAILY)
@@ -72,5 +72,4 @@ fun createNotificationSettings(emailAddress: EmailAddress?, phoneNumber: PhoneNu
         if (phoneNumber != null) send(SECURITY_ALERTS to phoneNumber, IMMEDIATELY)
         if (phoneNumber != null) Topic.entries.forEach { send(it to phoneNumber, IMMEDIATELY) }
     }
-
 }
