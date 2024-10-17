@@ -9,7 +9,7 @@ package variance.generics.refactored
 // Hence if we can constrain the upperbounds of the type param so that only Bev types
 // Can go inside it
 // Hence T can only ever be Beverage, or one of its subtypes.
-//If we don’t specify the upper bound, Kotlin will assume a default of Any?
+// If we don’t specify the upper bound, Kotlin will assume a default of Any?
 class Mug<T: Beverage>(val beverage: T){
     val temperature = beverage.idealTemperature
 }
@@ -38,7 +38,6 @@ class Dish2<T>(private var food: T) {
 // It's possible for a class to have more than one. E.G combo order for food + bevvy
 // Although rare to use more than two or three type parameters in a generic type.
 //class ComboOrder<T: Food, U: Beverage>(val food: T, val beverage: U)
-
 
 interface Dish<T> { val food: T}
 class BowlOfSoup(override val food: Soup): Dish<Soup>

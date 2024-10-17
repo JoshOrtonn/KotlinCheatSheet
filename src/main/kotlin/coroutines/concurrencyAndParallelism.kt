@@ -25,13 +25,12 @@ enum class Product(val description: String, val deliveryTime: Long) {
 }
 
 fun main() {
-//    slowSerialism()
-
+    //    slowSerialism()
     // Coroutines with concurrency  (two tasks interleaved over a period of time):
-//    concurrency()
+    //    concurrency()
 
     // With parallelism two tasks at same moment:
-//    parallelism()
+    // parallelism()
     parallelismWithException()
 }
 
@@ -48,6 +47,8 @@ private fun concurrency() {
     runBlocking {
         // Launch keyword is unable to assign return statement to val
         // Instead need to use async, perfect for non-dependent API calls
+        // 3 coroutines, one for ordering windows, one for ordering doors, done asynchrounously
+        // And another one for building bricks, windows and then doors, but this could be improved further.
         val windows = async { order(Product.WINDOWS) }
         val doors = async { order(Product.DOORS) }
         launch {
@@ -70,17 +71,18 @@ private fun concurrency() {
                                     | Launch   | Launch
                                       install    install doors
                                       windows
-
  */
 private fun parallelism() {
     runBlocking {
         // Dispatchers assign calls to certain thread pools
         // Different dispatchers have CPU heavy or IO heavy with different Scaling characteristics
+        // 2 coroutines for ordering windows and doors
         val windows = async(Dispatchers.IO) { order(Product.WINDOWS) }
         val doors = async(Dispatchers.IO) { order(Product.DOORS) }
+
         launch(Dispatchers.Default) {
             perform("Laying bricks")
-            // Also added two more launches, to work in parallel to install windows
+            // Also added two more launches, to work in parallel to install windows and doors at same time.
             launch { perform("install ${windows.await().description}") }
             launch { perform("install ${doors.await().description}") }
         }
